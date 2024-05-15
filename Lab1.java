@@ -61,11 +61,6 @@ public class Lab1 {
 				graph.put(word, new HashMap<String, Integer>());
 			}
 		}
-		// for (String word : graph.keySet()) {
-		// 	for (String word2 : graph.get(word).keySet()) {
-		// 		System.out.println(word + "---" + graph.get(word).get(word2) + "--->" + word2);
-		// 	}
-		// }
 		scanner.close();
 	}
 
