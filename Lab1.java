@@ -11,7 +11,7 @@ public class Lab1 {
         this.graph = new HashMap<>();
 		this.node = new HashMap<>();
     }
-	public void buildGraphFromFile(String filePath) throws FileNotFoundException {
+	public Map<String, Map<String, Integer>> createDirectedGraph(String filePath) throws FileNotFoundException {
 		List<String> words = new ArrayList<>();
         Scanner scanner = new Scanner(new java.io.File(filePath));
         while (scanner.hasNextLine()) {
@@ -62,6 +62,7 @@ public class Lab1 {
 			}
 		}
 		scanner.close();
+		return this.graph;
 	}
 
 
@@ -71,9 +72,10 @@ public class Lab1 {
         System.out.println("Please input file path: ");
         String filePath = scanner.nextLine();
         try {
-            lab1.buildGraphFromFile(filePath);
+            lab1.createDirectedGraph(filePath);
 		} catch (FileNotFoundException e) {
             System.err.println("File not found: " + filePath);
+			return;
         }
 		while (true) {
 			System.out.println("Please input choice");
