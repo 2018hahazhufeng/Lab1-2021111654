@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-// some changes in branch C4
+
 public class Lab1 {
     private Map<String, Map<String, Integer>> graph;
 	private Map<String, Integer> node;
@@ -157,9 +157,9 @@ public class Lab1 {
     }
 
 	public String queryBridgeWords(String word1, String word2) {
-		return internal_queryBridgeWords(word1, word2, false);
+		return inner_queryBridgeWords(word1, word2, false);
 	}
-	private String internal_queryBridgeWords(String word1, String word2, Boolean quiet) {
+	private String inner_queryBridgeWords(String word1, String word2, Boolean quiet) {
 		if (node.containsKey(word1) == false || node.containsKey(word2) == false) {
 			if (quiet == false) {
 				System.out.println("No word1 or word2 in the graph!");
@@ -207,7 +207,7 @@ public class Lab1 {
             String currentWord = words[i];
             String nextWord = words[i + 1];
             newText.append(currentWord).append(" ");
-            String bridgeWord = internal_queryBridgeWords(currentWord, nextWord, true);
+            String bridgeWord = inner_queryBridgeWords(currentWord, nextWord, true);
             if (bridgeWord != null && !bridgeWord.isEmpty()) {
                 newText.append(bridgeWord).append(" ");
             }
