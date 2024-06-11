@@ -157,7 +157,35 @@ public class Lab1 {
     }
 
 	public String queryBridgeWords(String word1, String word2) {
-		return inner_queryBridgeWords(word1, word2, false);
+		if (node.containsKey(word1) == false || node.containsKey(word2) == false) {
+			System.out.println("No word1 or word2 in the graph!");
+			return null;
+		}
+		List<String> ans = new ArrayList<>();
+		for (String word : node.keySet()) {
+			if (graph.get(word1).containsKey(word) && 
+				graph.containsKey(word) && 
+				graph.get(word).containsKey(word2)) {
+				ans.add(word);
+			}
+		}
+		if (ans.size() == 0) {
+			System.out.println("No bridge words from word1 to word2!");
+			return null;
+		} else {
+			StringBuilder newText = new StringBuilder();
+			newText.append("The bridge words from word1 to word2 are: ");
+			for (int i = 0; i < ans.size(); i++) {
+				newText.append(ans.get(i));
+				if (i != ans.size() - 1) {
+					newText.append(", ");
+				} else {
+					newText.append(".");
+				}
+			}
+			System.out.println(newText.toString());
+			return ans.get(0);
+		}
 	}
 	private String inner_queryBridgeWords(String word1, String word2, Boolean quiet) {
 		if (node.containsKey(word1) == false || node.containsKey(word2) == false) {
@@ -183,10 +211,7 @@ public class Lab1 {
 			for (int i = 0; i < ans.size(); i++) {
 				newText.append(ans.get(i));
 				if (i != ans.size() - 1) {
-					newText.append(",");
-					if (i == ans.size() - 2) {
-						newText.append("and ");
-					}
+					newText.append(", ");
 				} else {
 					newText.append(".");
 				}
